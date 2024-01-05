@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+kernal="$(uname -a | awk -F' ' '{print $3}')"
+shell="$(basename $SHELL)"
+total_mem="$(free -h | grep "Mem" | awk '{print $2}')"
+used_mem="$(free -h | grep "Mem" | awk '{print $3}')"
+distro="$(lsb_release -sd | awk -F'\n' '{print $NF}')"
+# total_pkg="$(apt list 2>/dev/null | wc -l)" # make script slow
+# upgradable_pkg="$(apt list --upgradable 2>/dev/null | awk 'NF>1' | wc -l)"
+up_time="$(uptime -p | sed 's/up //')"
+
+
+# Colors
+c0='\033[0m'     # No Color
+c1='\033[0;30m'        # Black
+c2='\033[0;31m'          # Red
+c3='\033[0;32m'        # Green
+c4='\033[0;33m'       # Yellow
+c5='\033[0;34m'         # Blue
+c6='\033[0;35m'       # Purple
+c7='\033[0;36m'         # Cyan
+c8='\033[0;37m'        # White
+
+
+printf ""
+printf "${c5}                    ..\n"
+printf "${c5}                  .oK0l\n"
+printf "${c5}                 :0KKKKd.\n"
+printf "${c5}               .xKO0KKKKd\n"
+printf "${c5}              ,Od' .d0000l\n"
+printf "${c5}             .c;.   .'''...           ..'.\n"
+printf "${c5}.,:cloddxxxkkkkOOOOkkkkkkkkxxxxxxxxxkkkx:\n"
+printf "${c5};kOOOOOOOkxOkc'...',;;;;,,,'',;;:cllc:,.\n"
+printf "${c5} .okkkkd,.lko  .......',;:cllc:;,,'''''.\n"
+printf "${c5}   .cdo. :xd' cd:.  ..';'',,,'',,;;;,'.\n"
+printf "${c5}      . .ddl.;doooc'..;oc;'..';::;,'.\n"
+printf "${c5}        coo;.oooolllllllcccc:'.  .\n"
+printf "${c5}       .ool''lllllccccccc:::::;.\n"
+printf "${c5}       ;lll. .':cccc:::::::;;;;'\n"
+printf "${c5}       :lcc:'',..';::::;;;;;;;,,.\n"
+printf "${c5}       :cccc::::;...';;;;;,,,,,,.\n"
+printf "${c5}       ,::::::;;;,'.  ..',,,,'''.\n"
+printf "${c5}        ........          ......\n"
+printf "${c5}           ...             ...\n"
+printf ""
+
+printf "    ${c0}[[ ${c2}${distro} ${c0}]]    \n"
+printf "     ${c0}[[ ${c5}$shell ${c0}]]  ${c0}[[ ${c7}$kernal ${c0}]] \n"
+printf "          ${c0}[[ ${c4}${used_mem}/${total_mem} ${c0}]] \n"
+printf "      ${c0}[[ ${c3}$up_time ${c0}]] \n"
